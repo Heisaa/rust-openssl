@@ -98,6 +98,11 @@ impl X509StoreBuilderRef {
         unsafe { cvt(ffi::X509_STORE_add_cert(self.as_ptr(), cert.as_ptr())).map(|_| ()) }
     }
 
+    #[corresponds(X509_STORE_add_crl)]
+    pub fn add_crl(&mut self, crl: X509Crl) -> Result<(), ErrorStack> {
+        unsafe { cvt(ffi::X509_STORE_add_crl(self.as_ptr(), cert.as_ptr())).map(|_| ()) }
+    }
+
     /// Load certificates from their default locations.
     ///
     /// These locations are read from the `SSL_CERT_FILE` and `SSL_CERT_DIR`
